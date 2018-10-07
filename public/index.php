@@ -72,7 +72,7 @@ class record {
         $this->createProperty("valuesArray", $values);
     }
 
-    public function createProperty($name, $value) {
+    private function createProperty($name, $value) {
         $this->{$name} = $value;
     }
 
