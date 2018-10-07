@@ -13,6 +13,21 @@ class main {
     }
 
 }
+class html {
+    public static function generateTable($records) {
+        $count = 0;
+        $tableHtml = "";
+        foreach($records as $record) {
+            if($count ==0) {
+                $tableHtml .= "heading " . print_r($record->returnArray());
+            } else {
+                $tableHtml .= "row " . print_r($record->returnArray());
+            }
+            $count++;
+        }
+        return $tableHtml;
+    }
+}
 
 class csv{
 
