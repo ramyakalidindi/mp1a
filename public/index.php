@@ -7,10 +7,17 @@ class main {
     static public function start($filename)
     {
 
+        $html = "<html><head><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\" integrity=\"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO\" crossorigin=\"anonymous\">
+
+<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js\"></script>
+<script type=\"text/javascript\" src=\"//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js\"></script>
+<link rel=\"stylesheet\" type=\"text/css\" href=\"/stylesheets/main.css\" /></head><body>";
+
         $records = csv::getRecords($filename);
         $tableHtml = html::generateTable($records);
 
-        print_r($tableHtml);
+        $html .= $tableHtml . "</body></html>";
+        print_r($html);
     }
 
 }
