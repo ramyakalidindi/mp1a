@@ -8,23 +8,33 @@ class main {
     {
 
         $records = csv::getRecords($filename);
+        $tableHtml = html::generateTable($records);
 
-        print_r($records);
+        print_r($tableHtml);
     }
 
 }
 class html {
     public static function generateTable($records) {
         $count = 0;
-        $tableHtml = "";
+        $tableHtml = "<table class='table table-striped'>";
         foreach($records as $record) {
             if($count ==0) {
-                $tableHtml .= "heading " . print_r($record->returnArray());
+                $tableHtml .= "<thead><tr> ";
+                foreach ($record->returnArray() as $value) {
+                    $tableHtml .= "<th scope='col'>" . $value . "</th>";
+                }
+                $tableHtml .= "</tr></thead><tbody>";
             } else {
-                $tableHtml .= "row " . print_r($record->returnArray());
+                $tableHtml .= "<tr>";
+                foreach ($record->returnArray() as $value) {
+                    $tableHtml .= "<td>" . $value . "</td>";
+                }
+                $tableHtml .= "</tr>";
             }
             $count++;
         }
+        $tableHtml .= "</tbody></table>";
         return $tableHtml;
     }
 }
@@ -57,6 +67,11 @@ class record {
 
     public function createProperty($name, $value) {
         $this->{$name} = $value;
+    }
+
+    public function returnArray() {
+        return $this->{"valuesArray"};
+
     }
 }
 
